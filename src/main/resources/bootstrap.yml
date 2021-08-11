@@ -1,0 +1,13 @@
+spring:
+  application:
+    name: system_platform_k8s
+  main:
+    allow-bean-definition-overriding: true
+  cloud:
+    nacos:
+      server-addr: 192.168.0.170:30112
+      discovery:
+        namespace: d2f20d3a-e9e5-4bd1-979b-42a33d99370c
+      config:
+        namespace: d2f20d3a-e9e5-4bd1-979b-42a33d99370c
+        file-extension: yaml

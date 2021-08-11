@@ -1,0 +1,35 @@
+#k8s:
+#  token: eyJhbGciOiJSUzI1NiIsImtpZCI6IlBobW8ycGtmM1lpSF92Y19kVjBmSFVpeUZXWXlmbnl2d21FdDBNV2FZaWcifQ.eyJpc3MiOiJrdWJlcm5ldGVzL3NlcnZpY2VhY2NvdW50Iiwia3ViZXJuZXRlcy5pby9zZXJ2aWNlYWNjb3VudC9uYW1lc3BhY2UiOiJrdWJlLXN5c3RlbSIsImt1YmVybmV0ZXMuaW8vc2VydmljZWFjY291bnQvc2VjcmV0Lm5hbWUiOiJkYXNoYm9hcmQtYWRtaW4tdG9rZW4tbnRzYnciLCJrdWJlcm5ldGVzLmlvL3NlcnZpY2VhY2NvdW50L3NlcnZpY2UtYWNjb3VudC5uYW1lIjoiZGFzaGJvYXJkLWFkbWluIiwia3ViZXJuZXRlcy5pby9zZXJ2aWNlYWNjb3VudC9zZXJ2aWNlLWFjY291bnQudWlkIjoiMWQxM2Q3ZTMtYTExMC00NTM3LWFmMjUtM2NhZTNhYWI4NGYyIiwic3ViIjoic3lzdGVtOnNlcnZpY2VhY2NvdW50Omt1YmUtc3lzdGVtOmRhc2hib2FyZC1hZG1pbiJ9.EALc1nAvTtjbt0jxMGXw-Ww5UM5YW0YHDEmyfGtcVAtqYAuIqxGRDP67-4K2bh-H9WzGRUDHLDwDOqHxjlNXJfCFbwDhoAr51jbz40ooh9wEvNiEgneY9b-vPL9wxo2rMe7pi_ks4lwhMOvSlOuwmtBElpDNlf_NEW4spTrPPvsgDtEHhxSkyW3ZxsNx-LZzxDiNv5uDCXfqOSXf-PnFInSVdeQhg5ZTQp6JF6G8uoZrSby7nnCXORZGTuoKgSUrNV1Nrg4O3STvil2amypa8JsSMynCnWxR8GZBnBLi03L9a7vHo21myI64JWnKbbEp4hJerU10oGwhVShCpuoESg
+#  url: https://192.168.0.170:6443/
+#spring:
+#  datasource:
+#    url: jdbc:mysql://192.168.0.170:3306/elco_zhuchi_system?characterEncoding=utf-8&serverTimezone=Asia/Shanghai
+#    username: root
+#    password: toor
+#    driver-class-name: com.mysql.cj.jdbc.Driver
+#  redis:
+#    host: 192.168.0.170
+#    port: 6379
+#    password: root123redis
+#  servlet:
+#    multipart:
+#      enabled: true
+#      max-file-size: 100MB
+#      max-request-size: 100MB
+#  feign:
+#    httpclient:
+#      enabled: false
+#    okhttp:
+#      enabled: true
+#ribbon:
+#  ConnectTimeout: 5000
+#  ReadTimeout: 10000
+#min:
+#  io:
+#    endpoint: 192.168.0.170
+#    port: 30200
+#    accessKey: minio12345
+#    secretKey: minio12345
+#    secure: false
+#swagger:
+#  title: 系统平台-k8s微服务
