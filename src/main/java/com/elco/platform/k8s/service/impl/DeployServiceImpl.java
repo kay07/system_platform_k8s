@@ -2,14 +2,13 @@ package com.elco.platform.k8s.service.impl;
 
 import com.elco.platform.k8s.config.ServerConfig;
 import com.elco.platform.k8s.entity.dto.CreateDto;
-import com.elco.platform.k8s.service.Create;
+import com.elco.platform.k8s.service.DeployService;
 import io.kubernetes.client.custom.IntOrString;
 import io.kubernetes.client.openapi.ApiClient;
 import io.kubernetes.client.openapi.ApiException;
 import io.kubernetes.client.openapi.apis.AppsV1Api;
 import io.kubernetes.client.openapi.apis.CoreV1Api;
 import io.kubernetes.client.openapi.models.*;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
@@ -19,7 +18,7 @@ import java.util.List;
 import java.util.Map;
 
 @Service
-public class CreateServiceImpl implements Create {
+public class DeployServiceImpl implements DeployService {
     @Resource
     private ServerConfig serverConfig;
     @Override
@@ -152,13 +151,33 @@ public class CreateServiceImpl implements Create {
 
 
     }
-//    private ApiClient getConnection() {
-//        ApiClient   apiClient = new ClientBuilder().
-//                    setBasePath(addr).setVerifyingSsl(false).
-//                    setAuthentication(new AccessTokenAuthentication(token)).build();
-//            Configuration.setDefaultApiClient(apiClient);
-//        return apiClient;
-//    }
+    @Override
+    public boolean deleteSvc(String name) {
+        ApiClient client=serverConfig.getConnection();
+        CoreV1Api apiInstance=new CoreV1Api(client);
+        try {
+            apiInstance.deleteNamespacedService(name,"default",null,null,null,null,null,null);
+//            apiInstance.connectDeleteNamespacedServiceProxy(name,"default","");
+            return true;
+        } catch (ApiException e) {
+            //    System.out.println(e.getCode());
+            //    e.printStackTrace();
+            return false;
+        }
+    }
+
+    @Override
+    public boolean deleteDep(String name) {
+        ApiClient client=serverConfig.getConnection();
+        AppsV1Api apiInstance=new AppsV1Api(client);
+        try {
+            apiInstance.deleteNamespacedDeployment(name,"default",null,null,null,null,null,null);
+            return true;
+        } catch (ApiException e) {
+            // e.printStackTrace();
+            return false;
+        }
+    }
 
 
 }
