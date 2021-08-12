@@ -4,6 +4,7 @@ import com.elco.platform.k8s.config.ServerConfig;
 import com.elco.platform.k8s.entity.dto.CreateDto;
 import com.elco.platform.k8s.service.DeployService;
 import io.kubernetes.client.custom.IntOrString;
+import io.kubernetes.client.custom.Quantity;
 import io.kubernetes.client.openapi.ApiClient;
 import io.kubernetes.client.openapi.ApiException;
 import io.kubernetes.client.openapi.apis.AppsV1Api;
@@ -45,6 +46,7 @@ public class DeployServiceImpl implements DeployService {
         IntOrString intOrString = new IntOrString(dto.getPort());
         servicePort.setTargetPort(intOrString);
         servicePort.setPort(dto.getPort());
+        servicePort.setNodePort(dto.getNodePort());
         servicePorts.add(servicePort);
         serviceSpec.setPorts(servicePorts);
         Map<String, String> selector = new HashMap<>();
@@ -96,6 +98,22 @@ public class DeployServiceImpl implements DeployService {
         container.setName(dto.getName());
         container.setImage(dto.getImage());
         container.setImagePullPolicy("Always");
+        //spec-template-spec-container-resources
+        V1ResourceRequirements resources=new V1ResourceRequirements();
+        Quantity cpu=new Quantity(dto.getCpuLimit().toString()+"m");
+        Quantity memory=new Quantity(dto.getMemoryLimit().toString()+"Mi");
+        //limits
+        Map<String, Quantity> limits=new HashMap<>();
+
+        limits.put("cpu",cpu);
+        limits.put("memory",memory);
+        resources.setLimits(limits);
+        //resources
+        Map<String, Quantity> request=new HashMap<>();
+        request.put("cpu",cpu);
+        request.put("memory",memory);
+        resources.setRequests(request);
+        container.setResources(resources);
         //env
         if (!dto.getEnv().isEmpty() && dto.getEnv() != null) {
             List<V1EnvVar> env = new ArrayList<>();

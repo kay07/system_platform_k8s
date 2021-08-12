@@ -16,10 +16,16 @@ public class CreateDto implements Serializable {
     private String name;
     @ApiModelProperty(value = "服务端口(内部)")
     private Integer port;
+    @ApiModelProperty(value = "服务端口(外部)")
+    private Integer nodePort;
     @ApiModelProperty(value = "服务个数")
     private Integer replicas;
     @ApiModelProperty(value = "服务镜像地址")
     private String image;
+    @ApiModelProperty(value = "cpu资源,单位m,1000m等于1核")
+    private Integer cpuLimit;
+    @ApiModelProperty(value = "内存资源,单位Mi")
+    private Integer memoryLimit;
     @ApiModelProperty(value = "服务环境变量")
     private List<Env> env;
     @ApiModelProperty(value = "服务挂载路径")
